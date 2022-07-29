@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 var Twitter = require('twitter');
 require('dotenv/config');
 
-//Insert cluster link here
+//Insert cluster link here once database is setup
 //mongoose.connect("");
 
 app.listen(3001, () => {
@@ -22,7 +22,7 @@ app.listen(3001, () => {
 //https://www.youtube.com/watch?v=Zsu3R0IOHps @4:53
 
 
-
+//API Credentials
 const apiKey = process.env.apikey;
 const apiSecreteKey = process.env.apikeysecret;
 const accessToken = process.env.accesstoken;
@@ -35,6 +35,7 @@ var client = new Twitter({
     access_token_secret:  accessTokenSecret
 });
 
+//Example of API get request
 var params = {screen_name: 'Jae78613139'};
 client.get('statuses/user_timeline', params, function(error, tweets, response) {
     if(!error) {
