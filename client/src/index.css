@@ -6,9 +6,9 @@ html, body {
     height: 100%;
     left: 0px;
     top: 0px;
-    /*background-position: center;
+    background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;*/
+    background-size: cover;
     background: linear-gradient(180deg, #22B8DD 0%, #1B5DB2 100%);
 
 }
@@ -23,8 +23,10 @@ html, body {
   
     background: #ffffff;
     position: absolute;
-    width: 1152px;
-    height: 650px;
+    /*width: 1152px;
+    height: 650px;*/
+    height: 80%;
+    width: 80%;
     left: 144px;
     top: 75px;
 
