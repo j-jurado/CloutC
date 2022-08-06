@@ -1,3 +1,4 @@
+import AnimatedNumber from 'react-animated-number'
 
 const Main = () => {
     
@@ -14,6 +15,13 @@ const Main = () => {
             <h5>Retweet Count</h5>
             <h5>Tweet Count</h5>
             <p>Paragraph in main page</p>
+            <AnimatedNumber value={100} 
+            style={{fontSize: 200}} 
+            formatValue={v => v.toFixed(0)} 
+            duration={1000} 
+            frameStyle={perc => (
+                {opacity: perc / 100}
+            )} />
             <ellipse/>
         </div> 
 
