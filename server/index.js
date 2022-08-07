@@ -2,10 +2,16 @@ const express = require("express");
 const app = express();
 const mongoose = require('mongoose');
 var Twitter = require('twitter');
+const UserModel = require("./models/Users");
 require('dotenv/config');
+const cors = require("cors");
+
+app.use(express.json());
+app.use(cors());
 
 //Insert cluster link here once database is setup
 //mongoose.connect("");
+mongoose.connect("mongodb+srv://CloutC:CloutC123@cluster0.fkboauh.mongodb.net/?retryWrites=true&w=majority");
 
 app.listen(3001, () => {
     console.log("SERVER RUNNING SUCCESSFULLY");
@@ -34,18 +40,18 @@ var client = new Twitter({
 });
 
 //(DELETE LATER) Test user profile fetch
-function getUserProfileInfo(scr_name) {
-    var params = {screen_name: scr_name};
-    client.get('users/show', params, function(error, info, response) {
-        if(!error) {
-            console.log("SHOWING USER INFORMATION...");
-            console.log(info);
-        } else {
-            console.log(error);
-        }
-    });
-}
-getUserProfileInfo("jesusjrdo");
+// function getUserProfileInfo(scr_name) {
+//     var params = {screen_name: scr_name};
+//     client.get('users/show', params, function(error, info, response) {
+//         if(!error) {
+//             console.log("SHOWING USER INFORMATION...");
+//             console.log(info);
+//         } else {
+//             console.log(error);
+//         }
+//     });
+// }
+// getUserProfileInfo("jesusjrdo");
 
 //User profile fetch html compatible
 function getUserProInfo(req, res) {
@@ -66,3 +72,31 @@ function getUserProInfo(req, res) {
 //https://github.com/rgarber11/Dosca/blob/main/dosca-whiteboard/server/server.js
 //https://github.com/machadop1407/MERN-Beginners/blob/main/server/index.js
 
+app.post("/createUser", async (req, res) => {
+    const user = req.body;
+    const newUser = new UserModel(user);
+    await newUser.save();
+
+    res.json(user);
+});
+
+app.post("/validUser", async (req, res) => {
+    console.log("RUNNING VALID USER FUNC");
+    var params = {screen_name: req.body.username};
+    console.log(params);
+    client.get('users/show', params, function(error, info, response) {
+        if(!error) {
+            console.log(info);
+            if(info.protected){
+                console.log("PROFILE PRIVATE")
+                res.json({"code": 1});
+            } else {
+                console.log("PROFILE PUBLIC");
+                res.json(info);
+            }
+        } else {
+            console.log(error);
+            res.json({"code": 0});
+        }
+    });
+});
