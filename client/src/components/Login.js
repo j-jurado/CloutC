@@ -1,11 +1,13 @@
 import { useRef, useState, useEffect} from "react";
 import Axios from 'axios';
+import {useNavigate} from 'react-router-dom';
+import './Login.css';
 
 function Login() {
     const errRef = useRef();
-    const [listOfUsers, setListOfUsers] = useState([]);
     const [username, setUsername] = useState("");
     const [errMsg, setErrMsg] = useState('');
+    let navigate = useNavigate();
 
     const validUser = async () => {
         Axios.post("http://localhost:3001/validUser", {
@@ -26,6 +28,7 @@ function Login() {
             } else {
                 console.log("VALID PROFILE");
                 console.log(response.data);
+                navigate("/score");
             }
         });
     }
