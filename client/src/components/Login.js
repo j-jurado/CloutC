@@ -1,15 +1,20 @@
-import { useRef, useState, useEffect} from "react";
+import { useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Axios from 'axios';
-import {useNavigate} from 'react-router-dom';
 import './Login.css';
 
-function Login() {
+const Login = ({ authorize }) => {
     const errRef = useRef();
     const [username, setUsername] = useState("");
     const [errMsg, setErrMsg] = useState('');
     let navigate = useNavigate();
 
-    const validUser = async () => {
+    const clickNav = () => {
+        authorize();
+        navigate("score");
+    }
+
+    const validUser = () => {
         Axios.post("http://localhost:3001/validUser", {
             username,
         }).then((response) => {
@@ -28,7 +33,7 @@ function Login() {
             } else {
                 console.log("VALID PROFILE");
                 console.log(response.data);
-                navigate("/score");
+                clickNav();
             }
         });
     }
@@ -38,16 +43,15 @@ function Login() {
         <div>
             <input
             type="text"
-            placeholder="username..."
+            placeholder="Enter Username"
             onChange={(event) => {
                 setUsername(event.target.value);
             }}
             />
-            <button onClick={validUser}> input </button>
+            <button onClick={validUser}> Calculate Score </button>
             <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
         </div>
     </div>
     );
 }
- 
 export default Login;

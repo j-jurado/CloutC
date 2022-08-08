@@ -1,5 +1,9 @@
 import './Score.css';
 import AnimatedNumber from 'react-animated-number'
+import {useNavigate} from 'react-router-dom';
+import { useEffect } from 'react';
+
+
 function Score (){
     return(
         <div className='background'>

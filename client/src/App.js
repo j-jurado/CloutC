@@ -1,15 +1,23 @@
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import { useState } from "react";
 import Login from './components/Login';
 import Score from './components/Score';
-import {BrowserRouter as Router, Route, Routes, Link} from 'react-router-dom';
 import './App.css';
 
 function App() {
+  
+  const [user, setUser] = useState(null);
+  
   return (
     <Router>
-      
       <Routes>
-        <Route path="/" element={<Login />}></Route>
-        <Route path="/score" element={<Score />}></Route>
+        {!user && (
+        <Route path="/" element={<Login authorize={()=> setUser(true)} />} />
+        )}
+        {user && (
+        <Route path="/score" element={<Score authorize={()=> setUser(false)} />} />
+        )}
+        <Route path="*" element={<Navigate to={user ? "/score": "/"} />} />
       </Routes>
     </Router>
   );
