@@ -19,7 +19,7 @@ function Score (){
                 <h5>Retweet Count</h5>
                 <h5>Tweet Count</h5>
                 <p>Paragraph in main page</p>
-                <AnimatedNumber className="animated-number" value={40} 
+                <AnimatedNumber className="animated-number" value={400} 
                 formatValue={v => v.toFixed(0)} 
                 duration={1000} 
                 frameStyle={perc => (
