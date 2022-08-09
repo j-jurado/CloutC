@@ -42,14 +42,14 @@ const Login = ({ authorize }) => {
     <div className="App">
         <h1>Clout Check</h1>
         <div className="white-background">
-            <input
+            <input className='inputs'
             type="text"
             placeholder="Enter Username"
             onChange={(event) => {
                 setUsername(event.target.value);
             }}
             />
-            <button onClick={validUser}> Calculate Score </button>
+            <button className="buttns" onClick={validUser}> Calculate Score </button>
             <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
         </div>
     </div>
