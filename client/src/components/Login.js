@@ -40,18 +40,20 @@ const Login = ({ authorize }) => {
     
     return (
     <div className="App">
-        <h1>Clout C</h1>
-        <img src={require("../assets/cloud.png")}/>
-        <div className="white-background">
-            <input className='inputs'
-            type="text"
-            placeholder="Enter Username"
-            onChange={(event) => {
-                setUsername(event.target.value);
-            }}
-            />
-            <button className="buttns" onClick={validUser}> Calculate Score </button>
-            <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
+        <div className="title-square">
+            <h1>Clout C</h1>
+            <img src={require("../assets/cloud.png")}/>
+            <div className="white-background">
+                <input className='inputs'
+                type="text"
+                placeholder="Enter Username"
+                onChange={(event) => {
+                    setUsername(event.target.value);
+                }}
+                />
+                <button className="buttns" onClick={validUser}> Calculate Score </button>
+                <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
+            </div>
         </div>
         <p>Calculate your popularity score by entering your twitter username.</p>
     </div>
