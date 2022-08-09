@@ -52,6 +52,7 @@ const Login = ({ authorize }) => {
             <button className="buttns" onClick={validUser}> Calculate Score </button>
             <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
         </div>
+        <p>Calculate your popularity score by entering your twitter username.</p>
     </div>
     );
 }
