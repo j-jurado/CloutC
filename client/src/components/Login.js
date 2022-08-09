@@ -41,8 +41,7 @@ const Login = ({ authorize }) => {
     return (
     <div className="App">
         <h1>Clout C</h1>
-        <img src='cloud.svg'/>
-
+        <img src={require("./cloud.png")}/>
         <div className="white-background">
             <input className='inputs'
             type="text"
