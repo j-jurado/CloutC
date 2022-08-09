@@ -40,7 +40,8 @@ const Login = ({ authorize }) => {
     
     return (
     <div className="App">
-        <div>
+        <h1>Clout Check</h1>
+        <div className="white-background">
             <input
             type="text"
             placeholder="Enter Username"
