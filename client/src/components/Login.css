@@ -134,7 +134,7 @@ body { overflow: hidden; }
     position: absolute;
     left: -100%;
     margin: 7em -244px;
-    animation: slide 13s infinite;
+    animation: slide 23s infinite;
     animation-timing-function: linear;
 
 }
@@ -154,7 +154,7 @@ body { overflow: hidden; }
     position: absolute;
     left: -100%;
     margin: -12em 0px;
-    animation: slide 15s infinite;
+    animation: slide 32s infinite;
     animation-timing-function: linear;
 
 }
@@ -164,9 +164,55 @@ body { overflow: hidden; }
     position: absolute;
     left: -100%;
     margin: 14em 0px;
-    animation: slide 17s infinite;
+    animation: slide 25s infinite;
     animation-timing-function: linear;
    
+
+}
+.cloud5{
+    height: 200px;
+    width: 250px;
+    position: absolute;
+    left: -100%;
+    margin: -17em 0px;
+    animation: slide 17s infinite;
+    animation-timing-function: linear;
+}
+.cloud6{
+    height: 150px;
+    width: 200px;
+    position: absolute;
+    left: -100%;
+    margin: 3em 0px;
+    animation: slide 40s infinite;
+    animation-timing-function: linear;
+}
+.cloud7{
+    height: 130px;
+    width: 180px;
+    position: absolute;
+    left: -100%;
+    margin: -3em 0px;
+    animation: slide 36s infinite;
+    animation-timing-function: linear;
+}
+.cloud8{
+    height: 110px;
+    width: 160px;
+    position: absolute;
+    left: -100%;
+    margin: 18em 0px;
+    animation: slide 27s infinite;
+    animation-timing-function: linear;
+}
+.cloud9{
+    height: 70px;
+    width: 120px;
+    position: absolute;
+    left: -100%;
+    margin: -18em 0px;
+    animation: slide 27s infinite;
+    animation-timing-function: linear;
 }
 @keyframes slide {
     100% { left: 150%; }

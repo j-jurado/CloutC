@@ -46,7 +46,11 @@ const Login = ({ authorize }) => {
             <img className='cloud2' src={require("../assets/cloud2.png")}/>
             <img className='cloud3' src={require("../assets/cloud3.png")}/>
             <img className='cloud4' src={require("../assets/cloud4.png")}/>
-          
+            <img className='cloud5' src={require("../assets/cloud5.png")}/>
+            <img className='cloud6' src={require("../assets/cloud6.png")}/>
+            <img className='cloud7' src={require("../assets/cloud7.png")}/>
+            <img className='cloud8' src={require("../assets/cloud8.png")}/>
+            <img className='cloud9' src={require("../assets/cloud9.png")}/>
             <div className="white-background">
                 <input className='inputs'
                 type="text"
