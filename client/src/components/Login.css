@@ -128,17 +128,47 @@ body, html {
 }
 
 body { overflow: hidden; }
-img {
+.cloud {
     height: 100px;
     width: 150px;
     position: absolute;
     left: -100%;
     margin: 7em -244px;
-    animation: slide 10s infinite;
+    animation: slide 13s infinite;
     animation-timing-function: linear;
 
 }
+.cloud2 {
+    height: 80px;
+    width: 130px;
+    position: absolute;
+    left: -100%;
+    margin: -7em 0px;
+    animation: slide 18s infinite;
+    animation-timing-function: linear;
+
+}
+.cloud3 {
+    height: 120px;
+    width: 170px;
+    position: absolute;
+    left: -100%;
+    margin: -12em 0px;
+    animation: slide 15s infinite;
+    animation-timing-function: linear;
+
+}
+.cloud4{
+    height: 200px;
+    width: 250px;
+    position: absolute;
+    left: -100%;
+    margin: 14em 0px;
+    animation: slide 17s infinite;
+    animation-timing-function: linear;
+   
+}
 @keyframes slide {
-    100% { left: 100%; }
+    100% { left: 150%; }
    
 }
