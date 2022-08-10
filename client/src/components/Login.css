@@ -184,7 +184,7 @@ body { overflow: hidden; }
 }
 .cloud3 {
     height: 120px;
-    width: 170px;
+    width: 200px;
     position: absolute;
     left: -100%;
     margin: -12em 0px;
@@ -193,7 +193,7 @@ body { overflow: hidden; }
 
 }
 .cloud4{
-    height: 200px;
+    height: 170px;
     width: 250px;
     position: absolute;
     left: -100%;
@@ -240,7 +240,7 @@ body { overflow: hidden; }
     animation-timing-function: linear;
 }
 .cloud9{
-    height: 70px;
+    height: 90px;
     width: 120px;
     position: absolute;
     left: -100%;
