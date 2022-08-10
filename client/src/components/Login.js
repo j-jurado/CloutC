@@ -42,7 +42,11 @@ const Login = ({ authorize }) => {
     <div className="App">
         <div className="title-square">
             <h1>Clout C</h1>
-            <img src={require("../assets/cloud.png")}/>
+            <img className='cloud' src={require("../assets/cloud.png")}/>
+            <img className='cloud2' src={require("../assets/cloud2.png")}/>
+            <img className='cloud3' src={require("../assets/cloud3.png")}/>
+            <img className='cloud4' src={require("../assets/cloud4.png")}/>
+          
             <div className="white-background">
                 <input className='inputs'
                 type="text"
