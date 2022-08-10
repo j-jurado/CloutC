@@ -42,11 +42,12 @@ body, html {
 }
 
 .App p {
-    position: absolute;
+
+    position: absolute; 
     width: 471px;
     height: 42px;
     left: 32%;
-    top: 90%;
+    top: 90%; 
 
     font-family: 'Quicksand';
     font-style: normal;
@@ -77,13 +78,20 @@ body, html {
     background: #FFFFFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 20px;
+    display: flex;
+    flex: 1 1 0%;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
 }
 .inputs{
     box-sizing: border-box;
 
     position: relative;
     width: 90%;
-    height: 30%;
+    height: 30%; 
     /*
     left: 27%;
     top: 40%;
@@ -106,12 +114,23 @@ body, html {
     background-clip: text;
     text-fill-color: transparent;
 
+    min-height: 2.375rem;
+    max-height: 48px;
+    line-height: 2.375rem;
+    text-align: center;
+    max-width: 20rem;
+    min-width: 6.25rem;
+    outline: none;
+    box-sizing: border-box;
+    display: block;
+    padding-inline-end: 1.875rem;
+
 }
 .buttns{
 
     position: relative;
     width: 90%;
-    height: 30%;
+    height: 30%; 
     /* left: 27%;
     top: 40%px; */
     background: linear-gradient(180deg, #22B8DD 0%, #1B5DB2 100%);
@@ -125,6 +144,21 @@ body, html {
     line-height: center;
     font-display: center;
     color: white;
+
+    /* width: 50%;
+    height: 50%; */
+    margin: 0px;
+    border: 0px;
+    cursor: pointer;
+    display: block;
+    vertical-align: bottom;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    min-width: 48px;
+    min-height: 48px;
+    padding: 0px 16px 4px;
+    /* position: relative; */
 }
 
 body { overflow: hidden; }
