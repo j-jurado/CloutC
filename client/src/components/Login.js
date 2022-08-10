@@ -51,6 +51,7 @@ const Login = ({ authorize }) => {
                     setUsername(event.target.value);
                 }}
                 />
+                <br /><br />
                 <button className="buttns" onClick={validUser}> Calculate Score </button>
                 <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
             </div>

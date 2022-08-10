@@ -1,3 +1,9 @@
+body, html {
+    border: 0px;
+    padding: 0px;
+    margin: 0px;
+}
+
 .App {
     background: linear-gradient(180deg, #22B8DD 0%, #1B5DB2 100%);
     position: absolute;
@@ -8,23 +14,30 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+
+    display: flex;
+    flex: 1 1 0%;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
 }
 
 .App h1 {
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    height: 75px;
+    width: 300px;
+    margin: 4.25rem auto 32px;
     position: relative;
-    width: 525px;
-    height: 153px;
-    left: 30%;
-    top: 10%;
 
     font-family: 'Quicksand';
     font-style: normal;
     font-weight: 500;
-    font-size: 90px;
-    line-height: 160px;
-
+    font-size: 85px;
     color: #FFFFFF;
-
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
@@ -46,26 +59,36 @@
 }
 
 .white-background {
-    position: absolute;
+    /* position: absolute;
     width: 350px;
     height: 150px;
     left: 35%;
     top: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0%; */
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    height: 150px;
+    width: 350px;
+    margin: 4.25rem auto 32px;
+    position: relative;
     background: #FFFFFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 20px;
-    
 }
 .inputs{
     box-sizing: border-box;
 
-    position: center;
+    position: relative;
     width: 90%;
     height: 30%;
+    /*
     left: 27%;
     top: 40%;
     margin: 20px;
-
+*/
     background: #FFFFFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 100px;
@@ -77,12 +100,6 @@
     font-display: center;
     text-align: center;
 
-    font-family: 'Quicksand';
-    font-style: normal;
-    font-weight: 300;
-    font-size: 25px;
-    line-height: 62px;
-
     background: linear-gradient(180deg, #22B8DD 0%, #1B5DB2 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -92,11 +109,11 @@
 }
 .buttns{
 
-    position: center;
+    position: relative;
     width: 90%;
     height: 30%;
-    left: 27%;
-    top: 40%px;
+    /* left: 27%;
+    top: 40%px; */
     background: linear-gradient(180deg, #22B8DD 0%, #1B5DB2 100%);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 100px;
