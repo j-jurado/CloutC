@@ -5,6 +5,7 @@ var Twitter = require('twitter');
 const UserModel = require("./models/Users");
 require('dotenv/config');
 const cors = require("cors");
+var user;
 
 app.use(express.json());
 app.use(cors());
@@ -72,6 +73,12 @@ function getUserProInfo(req, res) {
 //https://github.com/rgarber11/Dosca/blob/main/dosca-whiteboard/server/server.js
 //https://github.com/machadop1407/MERN-Beginners/blob/main/server/index.js
 
+app.get("/getStaticInfo", (req, res) => {
+    console.log("ENTERING GET STATIC INFO..........");
+    console.log(user);
+    res.json(user);
+});
+
 app.post("/createUser", async (req, res) => {
     const user = req.body;
     const newUser = new UserModel(user);
@@ -86,7 +93,8 @@ app.post("/validUser", async (req, res) => {
     console.log(params);
     client.get('users/show', params, function(error, info, response) {
         if(!error) {
-            console.log(info);
+            user = info;
+            //console.log(info);
             if(info.protected){
                 console.log("PROFILE PRIVATE")
                 res.json({"code": 1});
