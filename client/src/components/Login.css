@@ -66,8 +66,8 @@ body, html {
     align-items: center;
 }
 
-.white-background {
 
+.white-background {
     display: flex;
     -webkit-box-pack: center;
     justify-content: center;
@@ -86,15 +86,32 @@ body, html {
     -webkit-box-align: center;
     align-items: center;
 }
+
+p.errmsg {
+    color: red;
+    top: 48%;
+    font-weight: 400;
+    width: 350px;
+    display: block;
+
+    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
 .inputs{
     box-sizing: border-box;
 
     position: relative;
     width: 90%;
-    height: 30%; 
+    height: 60%; 
 
     background: #FFFFFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border: linear-gradient(#22B8DD, #1B5DB2);
+    border-style: solid;
+    border-width: 5px;
     border-radius: 100px;
     font-family: 'Quicksand';
     font-style: normal;
@@ -111,13 +128,11 @@ body, html {
     text-fill-color: transparent;
 
     min-height: 2.375rem;
-    max-height: 48px;
+    max-height: 55px;
     line-height: 2.375rem;
     text-align: center;
     max-width: 20rem;
     min-width: 6.25rem;
-    outline: none;
-    box-sizing: border-box;
     display: block;
     padding-inline-end: 0;
 }
@@ -151,6 +166,9 @@ body, html {
     min-width: 48px;
     min-height: 48px;
     padding: 0px 16px 4px;
+    min-height: 2.375rem;
+    max-height: 55px;
+
     /* position: relative; */
 }
 
@@ -245,3 +263,20 @@ body { overflow: hidden; }
     100% { left: 150%; }
    
 }
+@keyframes shake {
+    10%, 90% {
+      transform: translate3d(-1px, 0, 0);
+    }
+    
+    20%, 80% {
+      transform: translate3d(2px, 0, 0);
+    }
+  
+    30%, 50%, 70% {
+      transform: translate3d(-4px, 0, 0);
+    }
+  
+    40%, 60% {
+      transform: translate3d(4px, 0, 0);
+    }
+  }
