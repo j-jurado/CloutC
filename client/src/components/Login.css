@@ -88,13 +88,13 @@ body, html {
 }
 
 p.errmsg {
-    color: red;
+    color: maroon;
     top: 48%;
     font-weight: 400;
     width: 350px;
     display: block;
 
-    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+    animation: shake 0.82s cubic-bezier(.66,.17,.29,.97) both;
     transform: translate3d(0, 0, 0);
     backface-visibility: hidden;
     perspective: 1000px;
@@ -109,9 +109,9 @@ p.errmsg {
 
     background: #FFFFFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border: linear-gradient(#22B8DD, #1B5DB2);
+    border: #1B5DB2;
     border-style: solid;
-    border-width: 5px;
+    border-width: 1px;
     border-radius: 100px;
     font-family: 'Quicksand';
     font-style: normal;
@@ -263,20 +263,21 @@ body { overflow: hidden; }
     100% { left: 150%; }
    
 }
+
 @keyframes shake {
     10%, 90% {
-      transform: translate3d(-1px, 0, 0);
+      transform: translate3d(-5px, 0, 0);
     }
     
     20%, 80% {
-      transform: translate3d(2px, 0, 0);
+      transform: translate3d(8px, 0, 0);
     }
   
     30%, 50%, 70% {
-      transform: translate3d(-4px, 0, 0);
+      transform: translate3d(-10px, 0, 0);
     }
   
     40%, 60% {
-      transform: translate3d(4px, 0, 0);
+      transform: translate3d(8px, 0, 0);
     }
   }
