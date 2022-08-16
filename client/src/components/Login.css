@@ -179,9 +179,9 @@ body { overflow: hidden; }
     position: absolute;
     left: -100%;
     margin: 7em -244px;
-    animation: slide 23s infinite;
-    animation-timing-function: linear;
+    animation: slide 50s infinite;
 
+    animation-timing-function: cubic-bezier(0.42,0,0.58,1);
 }
 .cloud2 {
     height: 80px;
@@ -189,8 +189,8 @@ body { overflow: hidden; }
     position: absolute;
     left: -100%;
     margin: -7em 0px;
-    animation: slide 18s infinite;
-    animation-timing-function: linear;
+    animation: slide 40s infinite;
+    animation-timing-function: cubic-bezier(0.42,0,1,1);
 
 }
 .cloud3 {
@@ -199,18 +199,19 @@ body { overflow: hidden; }
     position: absolute;
     left: -100%;
     margin: -12em 0px;
-    animation: slide 32s infinite;
-    animation-timing-function: linear;
-
+    animation: slide 47s infinite;
+    animation-timing-function: cubic-bezier(0,0,1,1);
 }
+
+
 .cloud4{
     height: 170px;
     width: 250px;
     position: absolute;
     left: -100%;
     margin: 14em 0px;
-    animation: slide 25s infinite;
-    animation-timing-function: linear;
+    animation: slide 36s infinite;
+    animation-timing-function: cubic-bezier(0.42,0,0.58,1);
    
 
 }
@@ -220,8 +221,8 @@ body { overflow: hidden; }
     position: absolute;
     left: -100%;
     margin: -17em 0px;
-    animation: slide 17s infinite;
-    animation-timing-function: linear;
+    animation: slide 37s infinite;
+    animation-timing-function: cubic-bezier(0.42,0,1,1);
 }
 .cloud6{
     height: 150px;
@@ -229,8 +230,8 @@ body { overflow: hidden; }
     position: absolute;
     left: -100%;
     margin: 3em 0px;
-    animation: slide 40s infinite;
-    animation-timing-function: linear;
+    animation: slide 45s infinite;
+    animation-timing-function: cubic-bezier(0,0,0.58,1);
 }
 .cloud7{
     height: 130px;
@@ -239,7 +240,7 @@ body { overflow: hidden; }
     left: -100%;
     margin: -3em 0px;
     animation: slide 36s infinite;
-    animation-timing-function: linear;
+    animation-timing-function: cubic-bezier(0.25,0.1,0.25,1);
 }
 .cloud8{
     height: 110px;
@@ -247,8 +248,8 @@ body { overflow: hidden; }
     position: absolute;
     left: -100%;
     margin: 18em 0px;
-    animation: slide 27s infinite;
-    animation-timing-function: linear;
+    animation: slide 40s infinite;
+    animation-timing-function: cubic-bezier(0,0,0.58,1);
 }
 .cloud9{
     height: 90px;
@@ -256,8 +257,8 @@ body { overflow: hidden; }
     position: absolute;
     left: -100%;
     margin: -18em 0px;
-    animation: slide 27s infinite;
-    animation-timing-function: linear;
+    animation: slide 48s infinite;
+    animation-timing-function: cubic-bezier(0.42,0,0.58,1);
 }
 @keyframes slide {
     100% { left: 150%; }
