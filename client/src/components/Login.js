@@ -14,8 +14,8 @@ const Login = ({ authorize }) => {
         navigate("score");
     }
 
-    const validUser = () => {
-        Axios.post("http://localhost:3001/validUser", {
+    const validUser = async () => {
+        await Axios.post("http://localhost:3001/validUser", {
             username,
         }).then((response) => {
             if(Object.keys(response.data).length === 1){

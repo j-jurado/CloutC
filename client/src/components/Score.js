@@ -7,6 +7,7 @@ import Axios from 'axios';
 
 function Score (){
     const [staticInfo, setStaticInfo] = useState();
+    const [user, setUser] = useState("");
     //const userInfo = JSON.parse(staticInfo);
     //onst userInfo = staticInfo.value("follower_count");
     //userInfo = JSON.parse(userInfo);
@@ -20,9 +21,10 @@ function Score (){
     // 2. Go to back end and make a list all the information in the exact order and return that list to the front end
 
     useEffect(() => {
-        Axios.get("http://localhost:3001/getTweets").then((response) => {
-          //setListOfUsers(response.data);
-        });
+        //Axios.get("http://localhost:3001/getTweets");
+        Axios.get("http://localhost:3001/getUser").then((response) => {
+            setUser(response.data);
+        })
     }, []);
 
     return(
@@ -49,7 +51,16 @@ function Score (){
         //         <ellipse id='profile-pic' />
         //     </div>
         // </div>
-        <h1>Score Page</h1>
+        <div>
+            <p>Name: {user.name}</p>
+            <p>Screen Name: {user.screen_name}</p>
+            <p>Followers: {user.followers_count}</p>
+            <p>Following: {user.friends_count}</p>
+            <p>Tweet Count: {user.statuses_count}</p>
+            <p>Tweet Count: {user.tweet_count}</p>
+            <p>Average Likes: {user.average_likes}</p>
+            <p>Average Retweets: {user.average_retweets}</p>
+        </div>
     )
 }
 export default Score;
