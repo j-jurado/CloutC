@@ -21,10 +21,17 @@ function Score (){
     // 2. Go to back end and make a list all the information in the exact order and return that list to the front end
 
     useEffect(() => {
-        //Axios.get("http://localhost:3001/getTweets");
-        Axios.get("http://localhost:3001/getUser").then((response) => {
-            setUser(response.data);
-        })
+        const getData = async() => {
+            const tweets = await Axios.get("http://localhost:3001/getTweets");
+            const user = Axios.get("http://localhost:3001/getUser").then((response) => {
+                setUser(response.data);
+            })
+        }
+        getData();
+        // Axios.get("http://localhost:3001/getTweets");
+        // Axios.get("http://localhost:3001/getUser").then((response) => {
+        //     setUser(response.data);
+        // })
     }, []);
 
     return(
@@ -56,7 +63,7 @@ function Score (){
             <p>Screen Name: {user.screen_name}</p>
             <p>Followers: {user.followers_count}</p>
             <p>Following: {user.friends_count}</p>
-            <p>Tweet Count: {user.statuses_count}</p>
+            <p>Status Count: {user.statuses_count}</p>
             <p>Tweet Count: {user.tweet_count}</p>
             <p>Average Likes: {user.average_likes}</p>
             <p>Average Retweets: {user.average_retweets}</p>

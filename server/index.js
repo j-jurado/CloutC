@@ -88,50 +88,7 @@ function getUserProInfo(req, res) {
 //     console.log(userInformation.followers);
 // })
 
-async function getTweets() {
-    console.log("GETTING TWEETS....");
-    var tweets;
-    params = {screen_name : screenName};
-    //params = {screen_name : userInformation.screen_name};
-    client.get('statuses/user_timeline', params, function(error, info, response) {
-        if(!error) {
-            tweets = info;
-            console.log("Successfully retrieved tweets");
-            var tweetCount = 0;
-            var tweetLikes = 0;
-            var tweetRetweets = 0;
-            var maxLikes = 0;
-            var maxRT = 0;
-            var popularTweetID;
-            tweets.map((tweet) => {
-                
-                if(tweet.retweeted_status == null){
-                    tweetCount++;
-                    tweetLikes += tweet.favorite_count;
-                    tweetRetweets += tweet.retweet_count;
-
-                    if(tweet.favorite_count > maxLikes){
-
-                    }
-                }
-            })
-            console.log("Tweet Count: " + tweetCount);
-            console.log("Average Likes: " + tweetLikes/tweetCount);
-            console.log("Average Retweets: " + tweetRetweets/tweetCount);
-            userInformation["tweet_count"] = tweetCount;
-            userInformation["average_likes"] = tweetLikes/tweetCount;
-            userInformation["average_retweets"] = tweetRetweets/tweetCount;
-            console.log(userInformation);
-            //res.json(info);
-        } else {
-            console.log(error);
-            //res.json(error);
-        }
-    })
-    //return 1;
-}
-
-// app.get("/getTweets", async (req, res) => {
+// async function getTweets() {
 //     console.log("GETTING TWEETS....");
 //     var tweets;
 //     params = {screen_name : screenName};
@@ -143,29 +100,91 @@ async function getTweets() {
 //             var tweetCount = 0;
 //             var tweetLikes = 0;
 //             var tweetRetweets = 0;
+//             var maxLikes = 0;
+//             var maxRT = 0;
+//             var popularTweetID;
 //             tweets.map((tweet) => {
                 
 //                 if(tweet.retweeted_status == null){
 //                     tweetCount++;
 //                     tweetLikes += tweet.favorite_count;
 //                     tweetRetweets += tweet.retweet_count;
+
+//                     if(tweet.favorite_count > maxLikes){
+
+//                     }
 //                 }
 //             })
 //             console.log("Tweet Count: " + tweetCount);
 //             console.log("Average Likes: " + tweetLikes/tweetCount);
 //             console.log("Average Retweets: " + tweetRetweets/tweetCount);
-//             //console.log(tweets);
-//             res.json(info);
+//             userInformation["tweet_count"] = tweetCount;
+//             userInformation["average_likes"] = tweetLikes/tweetCount;
+//             userInformation["average_retweets"] = tweetRetweets/tweetCount;
+//             console.log(userInformation);
+//             //res.json(info);
 //         } else {
 //             console.log(error);
-//             res.json(error);
+//             //res.json(error);
 //         }
 //     })
-// })
+//     return 1;
+// }
+
+app.get("/getTweets", async (req, res) => {
+    console.log("GETTING TWEETS...");
+    var tweets;
+    params = {screen_name : screenName, include_rts : false, exclude_replies : true, trim_user : true, count: 200};
+    //params = {screen_name : userInformation.screen_name};
+    client.get('statuses/user_timeline', params, function(error, info, response) {
+        if(!error) {
+            tweets = info;
+            console.log("Successfully retrieved tweets");
+            var tweetCount = 0;
+            var tweetLikes = 0;
+            var tweetRetweets = 0;
+            var retweetCount = 0;
+            var maxLikes = 0;
+            var maxRT = 0;
+            var popularTweetID;
+            var averageLikes = 0;
+            var averageRTS = 0;
+            tweets.map((tweet) => {
+                
+                if(tweet.retweeted_status == null){
+                    tweetCount++;
+                    tweetLikes += tweet.favorite_count;
+                    tweetRetweets += tweet.retweet_count;
+                } else {
+                    retweetCount++;
+                }
+            })
+            if(tweetCount != 0){
+                averageLikes = tweetLikes/tweetCount;
+                averageRTS = tweetRetweets/tweetCount;
+            }
+            console.log("Tweet Count: " + tweetCount);
+            console.log("Retweet Count: " + retweetCount);
+            console.log("Average Likes: " + averageLikes);
+            console.log("Average Retweets: " + averageRTS);
+            userInformation["tweet_count"] = tweetCount;
+            userInformation["average_likes"] = averageLikes;
+            userInformation["average_retweets"] = averageRTS;
+            console.log(userInformation);
+            //console.log(tweets);
+            res.json(info);
+        } else {
+            console.log(error);
+            res.json(error);
+        }
+    })
+    console.log("Finished getting tweets...")
+})
 
 app.get("/getUser", async (req, res) => {
     //getTweets();
     //test();
+    console.log("Returning userInformation");
     res.json(userInformation);
 })
 
@@ -201,7 +220,7 @@ app.post("/validUser", async (req, res) => {
                     "statuses_count" : info.statuses_count,
                 };
                 //await getTweets().then(alert);
-                getTweets();
+                //getTweets();
                 res.json(info);
             }
         } else {
