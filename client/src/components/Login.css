@@ -2,6 +2,7 @@ body, html {
     border: 0px;
     padding: 0px;
     margin: 0px;
+    font-family: 'Quicksand';
 }
 
 .App {
@@ -9,14 +10,8 @@ body, html {
     position: absolute;
     width: 100%;
     height: 100%;
-    left: 0px;
-    top: 0px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
 
     display: flex;
-    flex: 1 1 0%;
     flex-direction: column;
     -webkit-box-pack: center;
     justify-content: center;
@@ -33,7 +28,6 @@ body, html {
     margin: 4.25rem auto 32px;
     position: relative;
 
-    font-family: 'Quicksand';
     font-style: normal;
     font-weight: 500;
     font-size: 85px;
@@ -47,8 +41,6 @@ body, html {
     height: 42px;
     top: 90%; 
 
-    font-family: 'Quicksand';
-    font-style: normal;
     font-weight: 300;
     font-size: 16px;
     line-height: 20px;
@@ -58,7 +50,6 @@ body, html {
 
     display: block;
     margin: 0px 0px 0.625rem;
-    padding: auto;
     flex-direction: column;
     -webkit-box-pack: center;
     justify-content: center;
@@ -68,9 +59,6 @@ body, html {
 
 
 .white-background {
-    display: flex;
-    -webkit-box-pack: center;
-    justify-content: center;
     height: 150px;
     width: 350px;
     margin: 4.25rem auto 32px;
@@ -105,27 +93,17 @@ p.errmsg {
 
     position: relative;
     width: 90%;
-    height: 60%; 
-
-    background: #FFFFFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border: #1B5DB2;
     border-style: solid;
     border-width: 1px;
     border-radius: 100px;
     font-family: 'Quicksand';
-    font-style: normal;
-    font-weight: 300;
     font-size: 20px;
-    line-height: center;
-    font-display: center;
-    text-align: center;
 
     background: linear-gradient(180deg, #22B8DD 0%, #1B5DB2 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-fill-color: transparent;
 
     min-height: 2.375rem;
     max-height: 55px;
@@ -147,15 +125,9 @@ p.errmsg {
     border-radius: 100px;
 
     font-family: 'Quicksand';
-    font-style: normal;
-    font-weight: 300;
     font-size: 20px;
-    line-height: center;
-    font-display: center;
     color: white;
 
-
-    margin: 0px;
     border: 0px;
     cursor: pointer;
     display: block;
@@ -164,12 +136,9 @@ p.errmsg {
     text-align: center;
     text-decoration: none;
     min-width: 48px;
-    min-height: 48px;
     padding: 0px 16px 4px;
     min-height: 2.375rem;
     max-height: 55px;
-
-    /* position: relative; */
 }
 
 body { overflow: hidden; }
