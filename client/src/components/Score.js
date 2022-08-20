@@ -2,6 +2,7 @@ import './Score.css';
 import AnimatedNumber from 'react-animated-number'
 import {useNavigate} from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { TwitterTweetEmbed } from 'react-twitter-embed'; 
 import Axios from 'axios';
 
 
@@ -19,15 +20,23 @@ function Score (){
     //IDEAS:
     // 1. Go through back end and make individual functions that return the individual things
     // 2. Go to back end and make a list all the information in the exact order and return that list to the front end
+    var var1 = "1559823434028400640";
+    const [trendingTweetID, setTrendingTweetID] = useState("");
+    
+
 
     useEffect(() => {
         const getData = async() => {
             const tweets = await Axios.get("http://localhost:3001/getTweets");
             const user = Axios.get("http://localhost:3001/getUser").then((response) => {
                 setUser(response.data);
+                setTrendingTweetID(user.trending_tweet);
+
             })
+            
         }
         getData();
+        //var1 = user.trending_tweet;
         // Axios.get("http://localhost:3001/getTweets");
         // Axios.get("http://localhost:3001/getUser").then((response) => {
         //     setUser(response.data);
@@ -67,6 +76,9 @@ function Score (){
             <p>Tweet Count: {user.tweet_count}</p>
             <p>Average Likes: {user.average_likes}</p>
             <p>Average Retweets: {user.average_retweets}</p>
+            <p>Trending Tweet ID: {user.trending_tweet}</p>
+            
+            <TwitterTweetEmbed tweetId={trendingTweetID}/>
         </div>
     )
 }
