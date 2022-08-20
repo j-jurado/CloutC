@@ -208,7 +208,7 @@ body { overflow: hidden; }
     height: 170px;
     width: 250px;
     position: absolute;
-    left: -10%;
+    left: -25%;
     margin: 14em 0px;
     animation: slide 36s infinite;
     animation-timing-function: cubic-bezier(0.42,0,0.58,1);
@@ -216,7 +216,7 @@ body { overflow: hidden; }
 
 }
 .cloud5{
-    height: 200px;
+    height: 150px;
     width: 250px;
     position: absolute;
     left: -50%;
@@ -239,7 +239,7 @@ body { overflow: hidden; }
     position: absolute;
     left: -60%;
     margin: -3em 0px;
-    animation: slide 36s infinite;
+    animation: slide 49s infinite;
     animation-timing-function: cubic-bezier(0.25,0.1,0.25,1);
 }
 .cloud8{
