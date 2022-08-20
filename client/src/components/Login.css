@@ -224,7 +224,7 @@ body { overflow: hidden; }
     height: 90px;
     width: 120px;
     position: absolute;
-    left: -5%;
+    left: -35%;
     margin: -18em 0px;
     animation: slide 48s infinite;
     animation-timing-function: cubic-bezier(0.42,0,0.58,1);
