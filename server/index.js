@@ -225,8 +225,14 @@ app.post("/validUser", async (req, res) => {
                 res.json({"code": 1});
             } else {
                 console.log("PROFILE PUBLIC");
-                var profilePic = info.profile_image_url_https
-                profilePic = profilePic.slice(0,-11) + ".jpg";
+                
+                var profilePic = info.profile_image_url_https.slice(0,-11);
+                if(!info.default_profile_image){
+                    profilePic += ".jpg";
+                } else {
+                    profilePic += ".png";
+                }
+                
                 userInformation = {
                     "id" : info.id,
                     "name" : info.name,
@@ -236,6 +242,7 @@ app.post("/validUser", async (req, res) => {
                     "statuses_count" : info.statuses_count,
                     "profile_picture" : profilePic,
                 };
+                console.log(info);
                 //await getTweets().then(alert);
                 //getTweets();
                 res.json(info);

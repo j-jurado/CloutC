@@ -72,7 +72,8 @@ function Score (){
         //         <ellipse id='profile-pic' />
         //     </div>
         // </div>
-        <div>
+        <body>
+            <img src={user.profile_picture} width="10%" height="10%"/>
             <p>Name: {user.name}</p>
             <p>Screen Name: {user.screen_name}</p>
             <p>Followers: {user.followers_count}</p>
@@ -83,7 +84,7 @@ function Score (){
             <p>Average Retweets: {user.average_retweets}</p>
             <p>Trending Tweet ID: {user.trending_tweet}</p>
             <TwitterTweetEmbed key={user.trending_tweet} tweetId={user.trending_tweet}/>
-        </div>
+        </body>
     )
 }
 export default Score;
