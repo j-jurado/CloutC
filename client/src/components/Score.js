@@ -7,7 +7,7 @@ import Axios from 'axios';
 
 
 function Score (){
-    const [staticInfo, setStaticInfo] = useState();
+    //const [staticInfo, setStaticInfo] = useState();
     const [user, setUser] = useState("");
     //const userInfo = JSON.parse(staticInfo);
     //onst userInfo = staticInfo.value("follower_count");
@@ -20,8 +20,9 @@ function Score (){
     //IDEAS:
     // 1. Go through back end and make individual functions that return the individual things
     // 2. Go to back end and make a list all the information in the exact order and return that list to the front end
-    var var1 = "1559823434028400640";
-    const [trendingTweetID, setTrendingTweetID] = useState("");
+    //var var0 = "1559823434028400640";
+    //var var1 = '';
+    //const [trendingTweetID, setTrendingTweetID] = useState("");
     
 
 
@@ -30,18 +31,22 @@ function Score (){
             const tweets = await Axios.get("http://localhost:3001/getTweets");
             const user = Axios.get("http://localhost:3001/getUser").then((response) => {
                 setUser(response.data);
-                setTrendingTweetID(user.trending_tweet);
-
+                //setTrendingTweetID(response.data.trending_tweet);
+                //console.log(typeof trendingTweetID);
+                //var0 = response.data.trending_tweet;
             })
             
         }
         getData();
+        //setTrendingTweetID(user.trending_tweet);
         //var1 = user.trending_tweet;
         // Axios.get("http://localhost:3001/getTweets");
         // Axios.get("http://localhost:3001/getUser").then((response) => {
         //     setUser(response.data);
         // })
     }, []);
+
+    //const var1 = trendingTweetID;
 
     return(
         // <div className='background'>
@@ -77,8 +82,7 @@ function Score (){
             <p>Average Likes: {user.average_likes}</p>
             <p>Average Retweets: {user.average_retweets}</p>
             <p>Trending Tweet ID: {user.trending_tweet}</p>
-            
-            <TwitterTweetEmbed tweetId={trendingTweetID}/>
+            <TwitterTweetEmbed key={user.trending_tweet} tweetId={user.trending_tweet}/>
         </div>
     )
 }
