@@ -131,6 +131,47 @@ function getUserProInfo(req, res) {
 //     return 1;
 // }
 
+app.get("/getScore", async (req, res) => {
+    console.log("GETTING SCORE...");
+    //userInformation["clout_score"] = Math.round(Math.log(userInformation.followers_count)*100);
+    
+    var followerScore;
+    if(userInformation.followers_count == 0){
+        followerScore = 0;
+    } else if(userInformation.followers_count == 1){
+        followerScore = 15;
+    } else {
+        followerScore = Math.round(Math.log10(userInformation.followers_count)*100);
+    }
+    //Consider using a logarithmic formula for the likes to followers ratio
+    var likesToFollowersRatio = Math.round(userInformation.average_likes/userInformation.followers_count);
+    console.log(followerScore);
+    console.log(likesToFollowersRatio);
+    userInformation["clout_score"] = followerScore;
+    res.json({"code": 1});
+})
+app.get("/getFollowers", async (req, res) => {
+    console.log("GETTING FOLLOWERS...");
+    var followers;
+    params = {screen_name : screenName, skip_status: true, include_user_entities: false, count: 200};
+    client.get('followers/list', params, function(error, info, response) {
+        if(!error) {
+            followers = info.users;
+            var trending_followers = [];
+            followers.sort((a, b) => parseFloat(b.followers_count) - parseFloat(a.followers_count));
+            //console.log(followers);
+            if(followers[0]) trending_followers.push(followers[0]);
+            if(followers[1]) trending_followers.push(followers[1]);
+            if(followers[2]) trending_followers.push(followers[2]);
+            userInformation["trending_followers"] = trending_followers;
+            res.json(info);
+        } else {
+            console.log(error);
+            res.json(error);
+        };
+    })
+});
+
 app.get("/getTweets", async (req, res) => {
     console.log("GETTING TWEETS...");
     var tweets;
@@ -139,6 +180,7 @@ app.get("/getTweets", async (req, res) => {
     client.get('statuses/user_timeline', params, function(error, info, response) {
         if(!error) {
             tweets = info;
+            //console.log(tweets);
             //console.log("Successfully retrieved tweets");
             var tweetCount = 0;
             var tweetLikes = 0;
@@ -174,14 +216,14 @@ app.get("/getTweets", async (req, res) => {
             if(tweetCount != 0){
                 averageLikes = tweetLikes/tweetCount;
                 averageRTS = tweetRetweets/tweetCount;
-            }
+            };
             //console.log("Tweet Count: " + tweetCount);
             //console.log("Retweet Count: " + retweetCount);
             //console.log("Average Likes: " + averageLikes);
             //console.log("Average Retweets: " + averageRTS);
             userInformation["tweet_count"] = tweetCount;
-            userInformation["average_likes"] = averageLikes;
-            userInformation["average_retweets"] = averageRTS;
+            userInformation["average_likes"] = Math.round(averageLikes);
+            userInformation["average_retweets"] = Math.round(averageRTS);
             userInformation["trending_tweet"] = popularTweetID;
             //console.log(userInformation);
             //console.log(tweets);
@@ -219,20 +261,24 @@ app.post("/validUser", async (req, res) => {
         if(!error) {
             user = info;
             //console.log(user);
-            //console.log(info);
+            console.log(info);
             if(info.protected){
                 console.log("PROFILE PRIVATE")
                 res.json({"code": 1});
             } else {
                 console.log("PROFILE PUBLIC");
                 
-                var profilePic = info.profile_image_url_https.slice(0,-11);
-                if(!info.default_profile_image){
-                    profilePic += ".jpg";
-                } else {
-                    profilePic += ".png";
-                }
-                
+                // var profilePic = info.profile_image_url_https.slice(0,-11);
+                // var profilePicEnd = info.profile_image_url_https.slice(-4);
+                // if(!info.default_profile_image){
+                //     profilePic += ".jpg";
+                // } else {
+                //     profilePic += ".png";
+                // }
+                var profilePic = 
+                    info.profile_image_url_https.slice(0,-11) + 
+                    info.profile_image_url_https.slice(-4);
+
                 userInformation = {
                     "id" : info.id,
                     "name" : info.name,
@@ -242,7 +288,7 @@ app.post("/validUser", async (req, res) => {
                     "statuses_count" : info.statuses_count,
                     "profile_picture" : profilePic,
                 };
-                console.log(info);
+                //console.log(info);
                 //await getTweets().then(alert);
                 //getTweets();
                 res.json(info);

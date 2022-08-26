@@ -9,6 +9,7 @@ import Axios from 'axios';
 function Score (){
     //const [staticInfo, setStaticInfo] = useState();
     const [user, setUser] = useState("");
+    const [followerList, setFollowerList] = useState([]);
     //const userInfo = JSON.parse(staticInfo);
     //onst userInfo = staticInfo.value("follower_count");
     //userInfo = JSON.parse(userInfo);
@@ -29,8 +30,11 @@ function Score (){
     useEffect(() => {
         const getData = async() => {
             const tweets = await Axios.get("http://localhost:3001/getTweets");
+            const followers = await Axios.get("http://localhost:3001/getFollowers");
+            const score = await Axios.get("http://localhost:3001/getScore");
             const user = Axios.get("http://localhost:3001/getUser").then((response) => {
                 setUser(response.data);
+                setFollowerList(response.data.trending_followers);
                 //setTrendingTweetID(response.data.trending_tweet);
                 //console.log(typeof trendingTweetID);
                 //var0 = response.data.trending_tweet;
@@ -78,12 +82,26 @@ function Score (){
             <p>Screen Name: {user.screen_name}</p>
             <p>Followers: {user.followers_count}</p>
             <p>Following: {user.friends_count}</p>
-            <p>Status Count: {user.statuses_count}</p>
-            <p>Tweet Count: {user.tweet_count}</p>
+            <h1>Profile Stats</h1>
             <p>Average Likes: {user.average_likes}</p>
             <p>Average Retweets: {user.average_retweets}</p>
-            <p>Trending Tweet ID: {user.trending_tweet}</p>
+            <p>Tweet Count: {user.statuses_count}</p>
+            <h1>Trending Tweet</h1>
             <TwitterTweetEmbed key={user.trending_tweet} tweetId={user.trending_tweet}/>
+            <div className="followerDisplay">
+                <h1> Trending Followers</h1>
+                {followerList.map((follower) => {
+                    return(
+                        <div>
+                            <img src={follower.profile_image_url_https} width="2%" height="2%"/>
+                            <p><a href={"https://twitter.com/"+follower.screen_name}>{follower.name}</a></p>
+                            <p>{follower.screen_name}</p>
+                            <p>Followers: {follower.followers_count}</p>
+                            <p>Following: {follower.friends_count}</p>
+                        </div>
+                    );
+                })}
+            </div>
         </body>
     )
 }
