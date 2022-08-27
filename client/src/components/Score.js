@@ -82,6 +82,8 @@ function Score (){
             <p>Screen Name: {user.screen_name}</p>
             <p>Followers: {user.followers_count}</p>
             <p>Following: {user.friends_count}</p>
+            <h1>Clout Score</h1>
+            <p>{user.clout_score}</p>
             <h1>Profile Stats</h1>
             <p>Average Likes: {user.average_likes}</p>
             <p>Average Retweets: {user.average_retweets}</p>

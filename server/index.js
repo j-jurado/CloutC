@@ -133,7 +133,6 @@ function getUserProInfo(req, res) {
 
 app.get("/getScore", async (req, res) => {
     console.log("GETTING SCORE...");
-    //userInformation["clout_score"] = Math.round(Math.log(userInformation.followers_count)*100);
     
     var followerScore;
     if(userInformation.followers_count == 0){
@@ -143,11 +142,31 @@ app.get("/getScore", async (req, res) => {
     } else {
         followerScore = Math.round(Math.log10(userInformation.followers_count)*100);
     }
-    //Consider using a logarithmic formula for the likes to followers ratio
-    var likesToFollowersRatio = Math.round(userInformation.average_likes/userInformation.followers_count);
-    console.log(followerScore);
-    console.log(likesToFollowersRatio);
-    userInformation["clout_score"] = followerScore;
+
+    //Needs to be inverted so that a larger ratio hurts the score
+    var followersToLikesRatio = Math.round(userInformation.followers_count/userInformation.average_likes);
+    var likesRatioScore;
+    if(followersToLikesRatio == 0 || userInformation.average_likes == 0){
+        likesRatioScore = 0;
+    } else if (followersToLikesRatio == 1){
+        likesRatioScore = 15;
+    } else {
+        likesRatioScore = Math.round(Math.log10(followersToLikesRatio)*100);
+    }
+
+    //Needs to be inverted so that a larger ratio hurts the score
+    var followersToRetweetsRatio = Math.round(userInformation.followers_count/userInformation.average_retweets);
+    var retweetsRatioScore;
+    if(followersToRetweetsRatio == 0 || userInformation.average_retweets == 0){
+        retweetsRatioScore = 0;
+    } else if (followersToRetweetsRatio == 1){
+        retweetsRatioScore = 15;
+    } else {
+        retweetsRatioScore = Math.round(Math.log10(followersToRetweetsRatio)*100);
+    }
+
+    var cloutScore = Math.round(followerScore*0.6 + likesRatioScore*0.3 + retweetsRatioScore*0.3);
+    userInformation["clout_score"] = cloutScore;
     res.json({"code": 1});
 })
 app.get("/getFollowers", async (req, res) => {
