@@ -144,7 +144,10 @@ app.get("/getScore", async (req, res) => {
     //Needs to be inverted so that a larger ratio hurts the score
     //var followersToLikesRatio = Math.round(userInformation.followers_count/userInformation.average_likes);
     //var likesToFollowersRatio = Math.round(userInformation.average_likes/userInformation.followers_count);
-    var likesToFollowersRatio = userInformation.average_likes/userInformation.followers_count;
+    //var likesToFollowersRatio = userInformation.average_likes/userInformation.followers_count;
+
+    //Use another log or sqrt function for top half of this
+    var likesToFollowersRatio = userInformation.statuses_count/(userInformation.average_likes/userInformation.followers_count);
     var likesRatioScore;
     if(likesToFollowersRatio == 0 || userInformation.followers_count == 0){
         likesRatioScore = 0;
@@ -155,14 +158,18 @@ app.get("/getScore", async (req, res) => {
 
     } else {
         //likesRatioScore = Math.round(Math.log10(likesToFollowersRatio)*100);
-        likesRatioScore = Math.ceil(15000*Math.sqrt(likesToFollowersRatio));
+        //likesRatioScore = Math.ceil(15000*Math.sqrt(likesToFollowersRatio));
+        likesRatioScore = Math.ceil(Math.sqrt(likesToFollowersRatio));
 
     }
 
     //Needs to be inverted so that a larger ratio hurts the score
     //var followersToRetweetsRatio = Math.round(userInformation.followers_count/userInformation.average_retweets);
     //var retweetsToFollowersRatio = Math.round(userInformation.average_retweets/userInformation.followers_count);
-    var retweetsToFollowersRatio = userInformation.average_retweets/userInformation.followers_count;
+    //var retweetsToFollowersRatio = userInformation.average_retweets/userInformation.followers_count;
+
+    //Use another log or sqrt function for top half of this
+    var retweetsToFollowersRatio = userInformation.statuses_count/(userInformation.average_retweets/userInformation.followers_count);
     var retweetsRatioScore;
     if(retweetsToFollowersRatio == 0 || userInformation.followers_count == 0){
         retweetsRatioScore = 0;
@@ -173,12 +180,12 @@ app.get("/getScore", async (req, res) => {
 
     } else {
         //retweetsRatioScore = Math.round(Math.log10(retweetsToFollowersRatio)*100);
-        retweetsRatioScore = Math.round(15000*Math.sqrt(retweetsToFollowersRatio));
+        retweetsRatioScore = Math.round(Math.sqrt(retweetsToFollowersRatio));
 
     }
     
 
-    var cloutScore = Math.round(followerScore*0.6 + likesRatioScore*0.2 + retweetsRatioScore*0.2);
+    var cloutScore = Math.round(followerScore*0.5 + likesRatioScore*0.5 + retweetsRatioScore*0.5);
     userInformation["clout_score"] = cloutScore;
 
     console.log("follower score: " + followerScore);
