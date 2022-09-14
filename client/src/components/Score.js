@@ -25,7 +25,22 @@ function Score (){
     //var var1 = '';
     //const [trendingTweetID, setTrendingTweetID] = useState("");
     
+function followerShort(a, b) {
 
+    if (a > 1000000) {
+        a = (a /1000000).toFixed(1);
+        b = "M";
+    } else if (a > 1000){
+        a = (a/1000).toFixed(1);
+        b = "K";
+    }
+    else{
+        a = a;
+        b = " ";
+    }
+        
+    return [a, b];
+}
 
     useEffect(() => {
         const getData = async() => {
@@ -87,14 +102,26 @@ function Score (){
                         </div>
                         <div className="rone-col-two">
                             <h1>{user.screen_name}</h1> {/* screen name */}
-                            <p>Name: {user.name}</p>
+                            <h4>{user.name}</h4>
                             {/* <h1>Screen Name: {user.screen_name}</h1> */}
-                            <p>Followers: {user.followers_count} Following: {user.friends_count}</p>
+                            {/* <h5>Followers: {user.followers_count} Following: {user.friends_count}</h5> */}
+                            {/* <h5>{followerShort(user.followers_count)} Followers {followerShort(user.friends_count)} Following</h5> */}
+                            
+                            <h6>{followerShort(user.followers_count)}</h6>
+                            <h5> Followers </h5>
+                            <h6>{followerShort(user.friends_count)}</h6>
+                            <h5> Following</h5>
                             {/* <p>Following: {user.friends_count}</p> */}
                         </div>
                         <div className="rone-col-three">
-                            <h1>Clout Score</h1>
-                            <p>{user.clout_score}</p>
+                            <h3>Clout Score</h3>
+                            <div className="animated-num">
+                                <AnimatedNumber value={user.clout_score} style={{fontSize: 120, fontFamily: "Oxanium"}}
+                                formatValue={n => n.toFixed(0)}
+                                frameStyle={percentage => percentage > 80 && percentage < 80 ? { opacity: 5 } : {}}
+                                />
+                            </div>
+                            {/* <p>{user.clout_score}</p> */}
                         </div>
                     </div>
                     {/* <p>Name: {user.name}</p>
@@ -114,9 +141,26 @@ function Score (){
                             
                         <div className="rtwo-col-two">
                             <h2>Profile Stats</h2>
-                            <p>Average Likes: {user.average_likes}</p>
+                            <div className="num1">
+                                <p>{user.average_likes}</p>
+                            </div>
+                            <br/>
+                            <p>Average Likes</p>
+                            <br/>
+                            <div className="num2">
+                                <p>{user.average_retweets}</p>
+                            </div>
+                            <br/>
+                            <p>Average Retweets</p>
+                            <br/>
+                            <div className="num3">
+                                <p>{user.statuses_count}</p>
+                            </div>
+                            <br/>
+                            <p>Tweet Count</p>
+                            {/* <p>Average Likes: {user.average_likes}</p>
                             <p>Average Retweets: {user.average_retweets}</p>
-                            <p>Tweet Count: {user.statuses_count}</p>
+                            <p>Tweet Count: {user.statuses_count}</p> */}
                         </div>
 
                         <div className="rtwo-col-three">
@@ -124,11 +168,20 @@ function Score (){
                                 <h2> Trending Followers</h2>
                                 {followerList.map((follower) => {
                                     return(
-                                        <div>
-                                            <img src={follower.profile_image_url_https} width="2%" height="2%"/>
-                                            <p><a href={"https://twitter.com/"+follower.screen_name}>{follower.name}</a></p>
-                                            <p>{follower.screen_name}</p>
-                                            <p>Followers: {follower.followers_count} Following: {follower.friends_count}</p>
+                                        <div className="follow-columns">
+                                            <div className="follow-col-1">
+                                                <div className="follow-back">
+                                                    <img className="flr-pic" src={follower.profile_image_url_https} width="75px" height="75px"/>
+                                                </div>
+                                            </div>
+                                            <div className="follow-col-2">
+                                               
+                                                    <h3><a href={"https://twitter.com/"+follower.screen_name}>{follower.name}</a></h3>
+                                                    <h4>{follower.screen_name}</h4>
+                                                    {/* <h5>{follower.followers_count} Followers</h5> */}
+                                                    <h5>{followerShort(follower.followers_count)} Followers</h5>
+                                                    {/* <h5>Following: {follower.friends_count}</h5> */}
+                                            </div>
                                             {/* <p>Following: {follower.friends_count}</p> */}
                                         </div>
                                     );
