@@ -182,6 +182,7 @@
 
 .rtwo-col-one{
   height: 350px;
+  overflow: hidden;
 }
 .tweet{
   width: 50px;
