@@ -77,32 +77,82 @@ function Score (){
         //     </div>
         // </div>
         <body>
-            <img src={user.profile_picture} width="10%" height="10%"/>
-            <p>Name: {user.name}</p>
-            <p>Screen Name: {user.screen_name}</p>
-            <p>Followers: {user.followers_count}</p>
-            <p>Following: {user.friends_count}</p>
-            <h1>Clout Score</h1>
-            <p>{user.clout_score}</p>
-            <h1>Profile Stats</h1>
-            <p>Average Likes: {user.average_likes}</p>
-            <p>Average Retweets: {user.average_retweets}</p>
-            <p>Tweet Count: {user.statuses_count}</p>
-            <h1>Trending Tweet</h1>
-            <TwitterTweetEmbed key={user.trending_tweet} tweetId={user.trending_tweet}/>
-            <div className="followerDisplay">
-                <h1> Trending Followers</h1>
-                {followerList.map((follower) => {
-                    return(
-                        <div>
-                            <img src={follower.profile_image_url_https} width="2%" height="2%"/>
-                            <p><a href={"https://twitter.com/"+follower.screen_name}>{follower.name}</a></p>
-                            <p>{follower.screen_name}</p>
-                            <p>Followers: {follower.followers_count}</p>
-                            <p>Following: {follower.friends_count}</p>
+            <div className="blue-grad">
+                <div className="white-box">
+                    <div className="row-one">
+                        <div className="rone-col-one">
+                            <div className="user-pic-backg">
+                                <img className="user-pic" src={user.profile_picture} width="10%" height="10%"/>
+                            </div>
                         </div>
-                    );
-                })}
+                        <div className="rone-col-two">
+                            <h1>{user.screen_name}</h1> {/* screen name */}
+                            <p>Name: {user.name}</p>
+                            {/* <h1>Screen Name: {user.screen_name}</h1> */}
+                            <p>Followers: {user.followers_count} Following: {user.friends_count}</p>
+                            {/* <p>Following: {user.friends_count}</p> */}
+                        </div>
+                        <div className="rone-col-three">
+                            <h1>Clout Score</h1>
+                            <p>{user.clout_score}</p>
+                        </div>
+                    </div>
+                    {/* <p>Name: {user.name}</p>
+                    <p>Screen Name: {user.screen_name}</p>
+                    <p>Followers: {user.followers_count}</p>
+                    <p>Following: {user.friends_count}</p> */}
+                    {/* <h1>Clout Score</h1>
+                    <p>{user.clout_score}</p> */}
+                    <div className="row-two">
+
+                        <div className="rtwo-col-one">
+                            <h2>Trending Tweet</h2>
+                            {/* <div className="tweet"> */}
+                                <TwitterTweetEmbed key={user.trending_tweet} tweetId={user.trending_tweet} options={{cards: 'hidden' }}/>
+                            {/* </div> */}
+                        </div>
+                            
+                        <div className="rtwo-col-two">
+                            <h2>Profile Stats</h2>
+                            <p>Average Likes: {user.average_likes}</p>
+                            <p>Average Retweets: {user.average_retweets}</p>
+                            <p>Tweet Count: {user.statuses_count}</p>
+                        </div>
+
+                        <div className="rtwo-col-three">
+                            <div className="followerDisplay">
+                                <h2> Trending Followers</h2>
+                                {followerList.map((follower) => {
+                                    return(
+                                        <div>
+                                            <img src={follower.profile_image_url_https} width="2%" height="2%"/>
+                                            <p><a href={"https://twitter.com/"+follower.screen_name}>{follower.name}</a></p>
+                                            <p>{follower.screen_name}</p>
+                                            <p>Followers: {follower.followers_count} Following: {follower.friends_count}</p>
+                                            {/* <p>Following: {follower.friends_count}</p> */}
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        </div>
+                            {/* <h2>Trending Tweet</h2>
+                            <TwitterTweetEmbed key={user.trending_tweet} tweetId={user.trending_tweet}/>
+                            <div className="followerDisplay">
+                                <h2> Trending Followers</h2>
+                                {followerList.map((follower) => {
+                                    return(
+                                        <div>
+                                            <img src={follower.profile_image_url_https} width="2%" height="2%"/>
+                                            <p><a href={"https://twitter.com/"+follower.screen_name}>{follower.name}</a></p>
+                                            <p>{follower.screen_name}</p>
+                                            <p>Followers: {follower.followers_count}</p>
+                                            <p>Following: {follower.friends_count}</p>
+                                        </div>
+                                    );
+                                })}
+                            </div> */}
+                    </div>
+                </div>
             </div>
         </body>
     )

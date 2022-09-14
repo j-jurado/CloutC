@@ -13,14 +13,60 @@
     background-size: cover;
 }*/
 
-/** {
+* {
     margin: 0;
     font-family: "Quicksand";
     color: #000000;
-}*/
+}
+.white-box{
+    height: 650px;
+    width: 1150px;
+    margin: 4.25rem auto 32px;
+    position: relative;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    /* display: flex-start;  */
+    flex: 1 1 0%;
+    flex-direction: column;
+    /* column-count: 3; */
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+}
+.white-box h1{
+  font-family: 'Quicksand';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 50px;
+  line-height: 62px;
 
-.background
-{
+  color: #000000;
+
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.white-box h2{
+  font-family: 'Quicksand';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 38px;
+
+  color: #000000;
+
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
+}
+.white-box p {
+  font-family: 'Quicksand';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+
+  color: #000000;
+}
+.blue-grad{
     background: linear-gradient(180deg, #22B8DD 0%, #1B5DB2 100%);
     position: absolute;
     width: 1440px;
@@ -31,7 +77,74 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
-.White-Space {
+
+.user-pic-backg{
+
+  background: linear-gradient(180deg, #22B8DD 0%, #1B5DB2 100%);
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  margin: 0%;
+  padding: 0%;
+  border-radius: 100px;
+  position: relative;
+  width: 200px;
+  height: 200px;
+  top: 5%;
+  left: 5%;
+}
+
+.user-pic{
+  border-radius: 100px;
+  position: relative;
+  width: 185px;
+  height: 185px;
+  top: 7.5px;
+  left: 7.5px;
+}
+
+.row-one{
+  height: 210px;
+  margin: 0%;
+  column-span: none;
+  column-count: 3;
+}
+
+.rone-col-one{
+  margin: 0%;
+  padding: 0%;
+  height: 210px;
+
+}
+.rone-col-two{
+  margin: 0%;
+  padding: 0%;
+  height: 210px;
+
+}
+.rone-col-three{
+  margin: 0%;
+  padding: 0%;
+  height: 210px;
+}
+
+.row-two{
+  column-count: 3;
+  height: 350px;
+  margin: 25px;
+}
+
+.rtwo-col-one{
+  height: 350px;
+}
+.tweet{
+  width: 50px;
+}
+.rtwo-col-two{
+  height: 350px;
+}
+.rtwo-col-three{
+  height: 350px;
+}
+/* .White-Space {
   
     position: absolute;
     height: 80%;
@@ -143,5 +256,5 @@
   text-fill-color: transparent;
   
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
+} */
 

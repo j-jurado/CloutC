@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 var Twitter = require('twitter');
 const UserModel = require("./models/Users");
 require('dotenv/config');
@@ -15,7 +15,7 @@ app.use(cors());
 
 //Insert cluster link here once database is setup
 //mongoose.connect("");
-mongoose.connect("mongodb+srv://CloutC:CloutC123@cluster0.fkboauh.mongodb.net/?retryWrites=true&w=majority");
+// mongoose.connect("mongodb+srv://CloutC:CloutC123@cluster0.fkboauh.mongodb.net/?retryWrites=true&w=majority");
 
 app.listen(3001, () => {
     console.log("SERVER RUNNING SUCCESSFULLY");
