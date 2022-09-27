@@ -51,6 +51,7 @@ const Login = ({ authorize }) => {
             <img className='cloud7' src={require("../assets/cloud7.png")}/>
             <img className='cloud8' src={require("../assets/cloud8.png")}/>
             <img className='cloud9' src={require("../assets/cloud9.png")}/>
+
             <div className="white-background">
                 <input className='inputs'
                 type="text"
@@ -62,6 +63,7 @@ const Login = ({ authorize }) => {
                 <br />
                 <button className="buttns" onClick={validUser}> Calculate Score </button>
             </div>
+            
             <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
         </div>
         <p>Calculate your popularity score by entering your twitter username.</p>

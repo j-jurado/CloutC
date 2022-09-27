@@ -1,33 +1,17 @@
 const express = require("express");
-const app = express();
-// const mongoose = require('mongoose');
-var Twitter = require('twitter');
-const UserModel = require("./models/Users");
-require('dotenv/config');
 const cors = require("cors");
-const { json } = require("express");
-var user;
+var Twitter = require('twitter');
+const app = express();
+require('dotenv/config');
 var screenName;
 var userInformation;
 
 app.use(express.json());
 app.use(cors());
 
-//Insert cluster link here once database is setup
-//mongoose.connect("");
-// mongoose.connect("mongodb+srv://CloutC:CloutC123@cluster0.fkboauh.mongodb.net/?retryWrites=true&w=majority");
-
 app.listen(3001, () => {
     console.log("SERVER RUNNING SUCCESSFULLY");
 });
-
-// Apply for developer key for access to twitter API.
-// create an .env file and store variables like: apikey = 33453@443
-// in the file you want to use them call variables like: apikey = process.env.apikey
-// this hides all sensitive API credentials when posting on GitHub
-
-//https://www.youtube.com/watch?v=Zsu3R0IOHps @4:53
-
 
 //API credentials
 const apiKey = process.env.apikey;
@@ -43,21 +27,6 @@ var client = new Twitter({
     access_token_secret:  accessTokenSecret
 });
 
-//(DELETE LATER) Test user profile fetch
-// function getUserProfileInfo(scr_name) {
-//     var params = {screen_name: scr_name};
-//     client.get('users/show', params, function(error, info, response) {
-//         if(!error) {
-//             console.log("SHOWING USER INFORMATION...");
-//             console.log(info);
-//         } else {
-//             console.log(error);
-//         }
-//     });
-// }
-// getUserProfileInfo("jesusjrdo");
-
-//User profile fetch html compatible
 function getUserProInfo(req, res) {
     var params = {screen_name: req.body};
     client.get('users/show', params, function(error, info, response) {
@@ -69,67 +38,6 @@ function getUserProInfo(req, res) {
         }
     });
 }
-
-//TODO: create front end textbox to call this function
-//Look at:
-//https://github.com/imar26/twitter-webapp/blob/master/server/app.js
-//https://github.com/rgarber11/Dosca/blob/main/dosca-whiteboard/server/server.js
-//https://github.com/machadop1407/MERN-Beginners/blob/main/server/index.js
-
-
-// app.get("/getStaticInfo", (req, res) => {
-//     console.log("ENTERING GET STATIC INFO..........");
-//     console.log(user);
-//     res.json(user);
-// });
-
-// app.get("/getStaticInfo1", async (req, res) => {
-//     console.log("ENTERING GET STATIC INFO1..........");
-//     console.log(userInformation.followers);
-// })
-
-// async function getTweets() {
-//     console.log("GETTING TWEETS....");
-//     var tweets;
-//     params = {screen_name : screenName};
-//     //params = {screen_name : userInformation.screen_name};
-//     client.get('statuses/user_timeline', params, function(error, info, response) {
-//         if(!error) {
-//             tweets = info;
-//             console.log("Successfully retrieved tweets");
-//             var tweetCount = 0;
-//             var tweetLikes = 0;
-//             var tweetRetweets = 0;
-//             var maxLikes = 0;
-//             var maxRT = 0;
-//             var popularTweetID;
-//             tweets.map((tweet) => {
-                
-//                 if(tweet.retweeted_status == null){
-//                     tweetCount++;
-//                     tweetLikes += tweet.favorite_count;
-//                     tweetRetweets += tweet.retweet_count;
-
-//                     if(tweet.favorite_count > maxLikes){
-
-//                     }
-//                 }
-//             })
-//             console.log("Tweet Count: " + tweetCount);
-//             console.log("Average Likes: " + tweetLikes/tweetCount);
-//             console.log("Average Retweets: " + tweetRetweets/tweetCount);
-//             userInformation["tweet_count"] = tweetCount;
-//             userInformation["average_likes"] = tweetLikes/tweetCount;
-//             userInformation["average_retweets"] = tweetRetweets/tweetCount;
-//             console.log(userInformation);
-//             //res.json(info);
-//         } else {
-//             console.log(error);
-//             //res.json(error);
-//         }
-//     })
-//     return 1;
-// }
 
 app.get("/getScore", async (req, res) => {
     console.log("GETTING SCORE...");
@@ -156,7 +64,6 @@ app.get("/getScore", async (req, res) => {
     } else {
         retweetsRatioScore = Math.ceil(userInformation.statuses_count*retweetsToFollowersRatio);
     }
-    
 
     var cloutScore = Math.round(Math.ceil(followerScore*0.3) + Math.sqrt(likesRatioScore) + Math.sqrt(retweetsRatioScore));
     userInformation["clout_score"] = cloutScore;
@@ -170,6 +77,7 @@ app.get("/getScore", async (req, res) => {
 
     res.json({"code": 1});
 })
+
 app.get("/getFollowers", async (req, res) => {
     console.log("GETTING FOLLOWERS...");
     var followers;
@@ -179,7 +87,6 @@ app.get("/getFollowers", async (req, res) => {
             followers = info.users;
             var trending_followers = [];
             followers.sort((a, b) => parseFloat(b.followers_count) - parseFloat(a.followers_count));
-            //console.log(followers);
             if(followers[0]) trending_followers.push(followers[0]);
             if(followers[1]) trending_followers.push(followers[1]);
             if(followers[2]) trending_followers.push(followers[2]);
@@ -196,12 +103,9 @@ app.get("/getTweets", async (req, res) => {
     console.log("GETTING TWEETS...");
     var tweets;
     params = {screen_name : screenName, include_rts : false, exclude_replies : true, trim_user : true, count: 200};
-    //params = {screen_name : userInformation.screen_name};
     client.get('statuses/user_timeline', params, function(error, info, response) {
         if(!error) {
             tweets = info;
-            //console.log(tweets);
-            //console.log("Successfully retrieved tweets");
             var tweetCount = 0;
             var tweetLikes = 0;
             var tweetRetweets = 0;
@@ -222,12 +126,10 @@ app.get("/getTweets", async (req, res) => {
                         if(tweet.favorite_count > maxLikes){
                             popularTweetID = tweet.id_str;
                             maxLikes = tweet.favorite_count;
-                        }
-                        else if(tweet.retweet_count > maxRT){
+                        } else if(tweet.retweet_count > maxRT){
                             popularTweetID = tweet.id_str;
                             maxRT = tweet.retweet_count;
                         }
-                        //console.log(tweet);
                     } 
                 } else {
                     retweetCount++;
@@ -237,28 +139,19 @@ app.get("/getTweets", async (req, res) => {
                 averageLikes = tweetLikes/tweetCount;
                 averageRTS = tweetRetweets/tweetCount;
             };
-            //console.log("Tweet Count: " + tweetCount);
-            //console.log("Retweet Count: " + retweetCount);
-            //console.log("Average Likes: " + averageLikes);
-            //console.log("Average Retweets: " + averageRTS);
             userInformation["tweet_count"] = tweetCount;
             userInformation["average_likes"] = Math.round(averageLikes);
             userInformation["average_retweets"] = Math.round(averageRTS);
             userInformation["trending_tweet"] = popularTweetID;
-            //console.log(userInformation);
-            //console.log(tweets);
             res.json(info);
         } else {
             console.log(error);
             res.json(error);
         }
     })
-    //console.log("Finished getting tweets...")
 })
 
 app.get("/getUser", async (req, res) => {
-    //getTweets();
-    //test();
     console.log("Returning userInformation");
     console.log(userInformation);
     res.json(userInformation);
@@ -268,25 +161,15 @@ app.post("/validUser", async (req, res) => {
     console.log("RUNNING VALID USER FUNC");
     screenName = req.body.username;
     var params = {screen_name: screenName};
-    //console.log(params);
     client.get('users/show', params, function(error, info, response) {
         if(!error) {
             user = info;
-            //console.log(user);
             console.log(info);
             if(info.protected){
                 console.log("PROFILE PRIVATE")
                 res.json({"code": 1});
             } else {
                 console.log("PROFILE PUBLIC");
-                
-                // var profilePic = info.profile_image_url_https.slice(0,-11);
-                // var profilePicEnd = info.profile_image_url_https.slice(-4);
-                // if(!info.default_profile_image){
-                //     profilePic += ".jpg";
-                // } else {
-                //     profilePic += ".png";
-                // }
                 var profilePic = 
                     info.profile_image_url_https.slice(0,-11) + 
                     info.profile_image_url_https.slice(-4);
@@ -300,9 +183,6 @@ app.post("/validUser", async (req, res) => {
                     "statuses_count" : info.statuses_count,
                     "profile_picture" : profilePic,
                 };
-                //console.log(info);
-                //await getTweets().then(alert);
-                //getTweets();
                 res.json(info);
             }
         } else {
