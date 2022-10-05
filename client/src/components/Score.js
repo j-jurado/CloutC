@@ -12,10 +12,10 @@ import Axios from 'axios';
 //4. Invalid Profile tag needs to be brighter red - it looks purple
 
 //Score Page:
-//1. Page only covers 3/4 of the screen - need to stretch it to edges
-//2. Need to put more space between followers and following counts under screen name
-//3. Need to put high resolution profile pic for trending followers
-//4. Clean up unused CSS code
+//1. Need to put more space between followers and following counts under screen name
+//2. Need to put high resolution profile pic for trending followers
+//3. Long usernames from trending followers stick out past the white box
+//3. Clean up unused CSS code
 
 function Score (){
     const [user, setUser] = useState("");
