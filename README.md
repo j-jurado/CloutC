@@ -26,4 +26,4 @@ Most people think that follower count is equivalent to popularity. However, we b
 ### Contributors
 **Jesus Jurado** - API and HTTP requests, user authentication\
 **Mariela Badillo** - Page design, React.js implentation\
-**Brayan Diego** - Asset design, animations\
+**Brayan Diego** - Asset design, animations
